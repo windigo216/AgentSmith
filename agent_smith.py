@@ -77,7 +77,7 @@ def create_tool(callable:Callable):
     )
     return tool
 
-class RecursiveAgent:
+class AgentSmith:
     def __init__(self, tools = []):
         self.custom_tools = {}
         for tool in tools:
@@ -119,7 +119,7 @@ class RecursiveAgent:
         """Consult the GPT 4o agent
         """
 
-        agent = RecursiveAgent(self.custom_tools)
+        agent = AgentSmith(self.custom_tools)
         conversation = list(agent.agent_executor.stream({"input": prompt}))
 
         header = "This was the response from the GPT 4o agent. Intelligently use its response to complete your task.\nRESPONSE:\n"
@@ -203,13 +203,13 @@ def {function_name}{signature(func)}:
 
         self.custom_tools[function_name] = create_tool(globals()[function_name])
 
-        new_agent_executor = RecursiveAgent(list(self.custom_tools.values())).agent_executor
+        new_agent_executor = AgentSmith(list(self.custom_tools.values())).agent_executor
         self.agent_executor.tools = new_agent_executor.tools
         self.agent_executor.agent = new_agent_executor.agent
 
         return "Tool created successfully"
 
-agent = RecursiveAgent()
+agent = AgentSmith()
 
 while True:
     with open('prompt.txt', 'r') as prompt:

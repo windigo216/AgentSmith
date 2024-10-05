@@ -1,0 +1,5 @@
+Create tools and consult the GPT 4o API and GPT 4o Agent to achieve the following tasks:
+NOTE: there are no python packages currently installed. If you want to use a package, you will need to install it.
+NOTE: You are running on a Mac computer. There are no terminal tools installed, so for example, using git will not work.
+
+Determine the current time in Boston, MA.
